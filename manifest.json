@@ -1,6 +1,6 @@
 {
-  "name": "Linkedin Post generator",
-  "description": "Write a linkedin post from any article you find interesting!",
+  "name": "Linkedin Post generator on Calmly",
+  "description": "Write a linkedin post about any information you find interesting! Do it directly on Calmly",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
