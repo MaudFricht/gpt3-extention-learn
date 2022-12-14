@@ -59,7 +59,7 @@ const generateCompletionAction = async (info) => {
 
         const { selectionText } = info;
         const basePromptPrefix = `
-            Write me a detailed table of contents for a linkedin post about the content below.
+            Write me a linkedin post about the content below. Use industry jargon. Explain why it's interesting. It should be no more than 700 characters. Include the article link.
         
             Subject:
             `;
@@ -67,15 +67,15 @@ const generateCompletionAction = async (info) => {
         const baseCompletion = await generate(`${basePromptPrefix}${selectionText}`);
         console.log(baseCompletion);
 
+        //send the output
+        sendMessage(baseCompletion.text);
+
         // Second Prompt
         const secondPrompt = `
-        Take the table of contents and title of the linkedin post below and generate a linkedin post written in thwe style of Paul Graham. Make it feel like a story. Don't just list the points. Go deep into each one. Explain why.
+        Create a catchphrase to start the linkedin post below.        
+        Linkedin Post: ${baseCompletion.text}
         
-        Subject: ${selectionText}
-        
-        Table of Contents: ${baseCompletion.text}
-        
-        Linkedin Post:
+        Catchphrase:
         `;
 
         // Call your second prompt
@@ -85,6 +85,8 @@ const generateCompletionAction = async (info) => {
 
         // Send the output when we're all done
         sendMessage(secondPromptCompletion.text);
+
+        
 
     } catch (error) {
     console.log(error);
